@@ -38,8 +38,6 @@ require('cordova/channel').onCordovaReady.subscribe(function() {
 		}
    };
 
-console.warn('************* Calling cordova/exec --> registerCallback from within JS');
-
    require('cordova/exec')(jsCallback, null, serviceName, 'registerCallback', []);
 });
 
@@ -103,7 +101,6 @@ function poorManExtend(object, source){
 var eventSplitter = /\s+/;
 var slice = Array.prototype.slice;
 var EventMixin = {
-   _coldStartDelayMs: 20000,
 	on: function(events, callback, context) {
 
       var calls, event, node, tail, list;
@@ -245,9 +242,6 @@ var EventMixin = {
            }
          }, 200);
 
-         // window.setTimeout(function(){
-         //    self.trigger.apply(self, triggerArgs);
-         // }, self._coldStartDelayMs || 200);
       }
    }
 };
