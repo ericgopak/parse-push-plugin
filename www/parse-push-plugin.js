@@ -48,7 +48,7 @@ var ParsePushPlugin = {
 	_receiveEvent: 'receivePN',
 	_customEventKey: 'event', //default key for custom events associated with each PN, set this to anything you see fit
 
-   DEBUG: true,
+   DEBUG: false,
    ionicReady: false,
 
    setIonicReady: function(isReady) {
