@@ -149,7 +149,7 @@ public class ParsePushPluginReceiver extends ParsePushBroadcastReceiver {
 
 
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
       int importance = NotificationManager.IMPORTANCE_HIGH;
       NotificationManager notifManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
       NotificationChannel mChannel = notifManager.getNotificationChannel(DEFAULT_CHANNEL_ID);
