@@ -10,7 +10,8 @@ Parse.Push plugin for Cordova/Phonegap/ionic. Works for both hosted Parse.com an
 
 #### Supports Android and iOs 8, 9, 10
 
-#### Handles cold start out-of-the-box
+#### Handles cold start out-of-the-box*
+*make sure to call `ParsePushPlugin.setIonicReady(true)` after Ionic is ready in order to process events triggered during cold start (e.g. `openPN`)
 
 #### Simple Setup
 
