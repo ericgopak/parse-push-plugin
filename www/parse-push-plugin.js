@@ -1,4 +1,3 @@
-cordova.define("parse-push-plugin.ParsePushPlugin", function(require, exports, module) {
 var serviceName = 'ParsePushPlugin';
 
 //
@@ -247,5 +246,3 @@ var EventMixin = {
 };
 
 module.exports = poorManExtend(ParsePushPlugin, EventMixin);
-
-});
