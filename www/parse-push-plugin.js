@@ -1,3 +1,4 @@
+cordova.define("parse-push-plugin.ParsePushPlugin", function(require, exports, module) {
 var serviceName = 'ParsePushPlugin';
 
 //
@@ -37,6 +38,8 @@ require('cordova/channel').onCordovaReady.subscribe(function() {
 		}
    };
 
+console.warn('************* Calling cordova/exec --> registerCallback from within JS');
+
    require('cordova/exec')(jsCallback, null, serviceName, 'registerCallback', []);
 });
 
@@ -45,7 +48,14 @@ var ParsePushPlugin = {
 	_receiveEvent: 'receivePN',
 	_customEventKey: 'event', //default key for custom events associated with each PN, set this to anything you see fit
 
-   DEBUG: false,
+   DEBUG: true,
+   ionicReady: false,
+
+   setIonicReady: function(isReady) {
+	  if (this.DEBUG)
+	    console.log('setIonicReady: ' + isReady);
+	  this.ionicReady = isReady;
+   },
 
    getInstallationId: function(successCb, errorCb) {
       cordova.exec(successCb, errorCb, serviceName, 'getInstallationId', []);
@@ -66,7 +76,7 @@ var ParsePushPlugin = {
    unsubscribe: function(channel, successCb, errorCb) {
       cordova.exec(successCb, errorCb, serviceName, 'unsubscribe', [ channel ]);
    },
-   
+
    resetBadge: function(successCb, errorCb) {
        cordova.exec(successCb, errorCb, serviceName, 'resetBadge', []);
    },
@@ -93,7 +103,7 @@ function poorManExtend(object, source){
 var eventSplitter = /\s+/;
 var slice = Array.prototype.slice;
 var EventMixin = {
-   _coldStartDelayMs: 1000,
+   _coldStartDelayMs: 20000,
 	on: function(events, callback, context) {
 
       var calls, event, node, tail, list;
@@ -222,11 +232,26 @@ var EventMixin = {
       } else{
          var self = this;
          var triggerArgs = arguments;
-         window.setTimeout(function(){
-            self.trigger.apply(self, triggerArgs);
-         }, self._coldStartDelayMs || 200);
+
+         var interval = window.setInterval(function(){
+           if (self.ionicReady) {
+             clearInterval(interval);
+             if (this.DEBUG)
+               console.log('Awesome! Ionic is ready. Processing all the accumulated triggers');
+             self.trigger.apply(self, triggerArgs);
+           } else {
+             if (this.DEBUG)
+               console.log('Still waiting for Ionic to be ready...');
+           }
+         }, 200);
+
+         // window.setTimeout(function(){
+         //    self.trigger.apply(self, triggerArgs);
+         // }, self._coldStartDelayMs || 200);
       }
    }
 };
 
 module.exports = poorManExtend(ParsePushPlugin, EventMixin);
+
+});
