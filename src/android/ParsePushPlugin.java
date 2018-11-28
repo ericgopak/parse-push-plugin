@@ -144,9 +144,9 @@ public class ParsePushPlugin extends CordovaPlugin {
     //avoid blank
     PluginResult dataResult;
     if (pushAction.equals("OPEN")) {
-      if (helperPause)
-        dataResult = new PluginResult(PluginResult.Status.OK, _json);
-      else
+//      if (helperPause)
+//        dataResult = new PluginResult(PluginResult.Status.OK, _json);
+//      else
         dataResult = new PluginResult(PluginResult.Status.OK, cbParams);
     } else {
       dataResult = new PluginResult(PluginResult.Status.OK, _json);
