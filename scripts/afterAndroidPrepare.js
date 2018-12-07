@@ -27,7 +27,7 @@ module.exports = function (context) {
     var manifestPushNotificationIconNode = applicationNode.find('meta-data[@android:name="com.parse.push.notification_icon"]');
 
     if (!manifestPushNotificationIconNode) {
-      manifestPushNotificationIconNode = new ET.Element('meta-data', { 'android:name': 'com.parse.push.notification_icon' });
+      manifestPushNotificationIconNode = new ET.Element('meta-data', {'android:name': 'com.parse.push.notification_icon'});
       applicationNode.append(manifestPushNotificationIconNode);
     }
     manifestPushNotificationIconNode.set('android:resource', '@drawable/' + parsePushNotificationIcon);
@@ -62,7 +62,7 @@ module.exports = function (context) {
     var manifestGcmIdNode = applicationNode.find('meta-data[@android:name="com.parse.push.gcm_sender_id"]');
 
     if (!manifestGcmIdNode) {
-      manifestGcmIdNode = new ET.Element('meta-data', { 'android:name': 'com.parse.push.gcm_sender_id' });
+      manifestGcmIdNode = new ET.Element('meta-data', {'android:name': 'com.parse.push.gcm_sender_id'});
       applicationNode.append(manifestGcmIdNode);
     }
 
