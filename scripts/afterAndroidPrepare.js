@@ -8,7 +8,16 @@ module.exports = function (context) {
 
   // find the meta-data node in AndroidManifest.xml
   var androidPrjDir = path.join(context.opts.projectRoot, 'platforms/android');
-  var androidManifest = new ConfigFile(androidPrjDir, 'android', 'AndroidManifest.xml');
+  var oldManifest = new ConfigFile(androidPrjDir, 'android', 'AndroidManifest.xml');
+  var newManifest = new ConfigFile(androidPrjDir, 'android', 'app/src/main/AndroidManifest.xml');
+  var androidManifest;
+  if (newManifest.exists) {
+    // cordova-android >= 7.0.0
+    androidManifest = newManifest;
+  } else {
+    // cordova-android < 7.0.0
+    androidManifest = oldManifest;
+  }
   var applicationNode = androidManifest.data.find('application');
 
   // detect Parse notification icon
