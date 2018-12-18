@@ -293,7 +293,7 @@ Advanced Configuration
 
 The actual code that handles Parse platform initialization is in [ParsePushApplication.java](src/android/ParsePushApplication.java).
 
-Android knows to use this class due to the attribute `android:name` in `<application>` in 'platforms/android/AndroidManifest.xml'.
+Android knows to use this class due to the attribute `android:name` in `<application>` in 'platforms/android/app/src/main/AndroidManifest.xml'.
 To preserve your customizations, this plugin sets `android:name="github.taivo.parsepushplugin.ParsePushApplication"`  
 if and only if `android:name` is not already defined. It does this during plugin installation. Similarly, when the plugin is
 uninstalled, `android:name` will be removed only if its content matches `github.taivo.parsepushplugin.ParsePushApplication` exactly.
@@ -303,7 +303,7 @@ If you use your own Application class, don't forget to update `android:name` to 
 *Optional: Write your own MainApplication and/or initialize Parse yourself:* Look at [ParsePushApplication.java](src/android/ParsePushApplication.java).
 The comments contain all the explanations and hints you will need. Mimic the code to write your own customized implementation.
 
-*Optional: Customize background color for the push notification icon in Android Lollipop:* Go to your `platforms/android/res/values` folder and create a file named `colors.xml`. Paste the following content in it and replace the hex color value of the form `#AARRGGBB` to your liking.
+*Optional: Customize background color for the push notification icon in Android Lollipop:* Go to your `platforms/android/app/src/main/res/values` folder and create a file named `colors.xml`. Paste the following content in it and replace the hex color value of the form `#AARRGGBB` to your liking.
 
    ```xml
 	   <?xml version="1.0" encoding="utf-8"?>
